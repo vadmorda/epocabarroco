@@ -284,7 +284,7 @@ function renderPregunta() {
   let html = `
     <div class="question-text">
       <span class="q-es">${q.es}</span>
-      <span class="q-hint">${q.hint ?? ""}</span>
+      
     </div>
   `;
   if (q.img) {
