@@ -297,9 +297,12 @@ function renderPregunta() {
   if (esMulti(q)) {
     const respGuardada = respuestasUsuario[idxPregunta];
     html += `<div class="options">`;
-    q.opciones.forEach((op, iOp) => {
-      html += `<label class="option"><input type="radio" name="resp" value="${iOp}" ${respGuardada === iOp ? "checked" : ""}><div class="option-text">${op}</div></label>`;
-    });
+    const opcionesMezcladas = q.opciones.map((op, i) => ({ op, i }));
+barajar(opcionesMezcladas);
+
+opcionesMezcladas.forEach(({ op, i }) => {
+  html += `<label class="option"><input type="radio" name="resp" value="${i}" ${respGuardada === i ? "checked" : ""}><div class="option-text">${op}</div></label>`;
+});
     html += `</div>`;
   } else if (esCorta(q)) {
     const valor = respuestasUsuario[idxPregunta] ?? "";
